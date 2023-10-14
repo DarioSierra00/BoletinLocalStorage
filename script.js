@@ -66,20 +66,17 @@ for(let i = 0; i < borrar.length; i++){// Recorro el array de botones Borrar
 
 
 function modificar(){
-let actualizar = document.querySelectorAll('#mod');
+let actualizar = document.querySelectorAll('#mod');//Recupero todos los botones de modificar en un array
 
-for(let i = 0; i < actualizar.length; i++){
-    actualizar[i].addEventListener('click', function(event){
-        let usuario = usuarios[i];
-        event.target.parentNode.remove();
-        usuarios.splice(i,1);
-        localStorage.setItem('users',JSON.stringify(usuarios));
+for(let i = 0; i < actualizar.length; i++){ //Recorro el array de los botones
+    actualizar[i].addEventListener('click', function(event){ //Cuando haga click en alguno de los botones del array, (Los de modificar), Le pongo el event para acceder al padre del elemento, que en nuestro caso será el <li>
+        let usuario = usuarios[i]; // Guardo el usuario que quiero modificar en una variable
+        event.target.parentNode.remove(); // Borro el <li> correspondiente al botón que he clickado
+        usuarios.splice(i,1); //Borro del array la posición del usuario que quiero borrar, splice nos borrará 1 desde la posición i
 
         nombre.value = usuario.nombre;
-        direccion.value = usuario.direccion;
+        direccion.value = usuario.direccion; //Le asigno a los input cada valor correspondiente con el usuario que queremos borrar
         email.value = usuario.email;
-
-        enviar.textContent = "Editar Usuario";
 
     })
 }}
